@@ -1,3 +1,22 @@
+#  Instructions for running the project locally
+
+## Steps:
+1. Clone the repository:
+Open your terminal or command prompt and navigate to the directory where you want to clone the repository. Then run:
+### `git clone <repository-url>`
+2. Navigate to the project directory:
+### `cd <project-folder-name>`
+3. Install dependencies:
+Once you're inside the project folder, install the necessary dependencies by running:
+### `npm install`
+This command will read the package.json file and install all the required dependencies.
+4. Run the application:
+After the dependencies are installed, start the development server by executing:
+### `npm start`
+This command will start a local server and launch your React application. It usually opens in your default web browser at http://localhost:3000/
+5. View the application:
+Open your web browser and go to http://localhost:3000/ (or as indicated in your terminal) to see your React application running locally.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

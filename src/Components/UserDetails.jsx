@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import back from  '../img/back.png';
 import alert from '../img/alert.png';
+
 const ManualAlert = ({ message, onClose }) => {
   return (
       <div className="alert fixed top-2.50 left-40 m-auto flex flex-col items-start bg-green-200 p-5 rounded-lg w-6/12 lg:w-9/12">
@@ -24,48 +25,58 @@ const UserDetails = ({ userData, onUserClick }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedUser, setSelectedUser] = useState(null);
   const [showAlert, setShowAlert] = useState(null);
+  // filter the username for removing the uppercase lowercase conflict
   const filteredUsers = userData.filter((user) =>
     user.username.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // this handels the search functionality
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
+  // this selecting a user 
   const selectUser = (user) => {
     setSelectedUser(user);
   };
+  // this triggers to open modal upon clicking/selecting a user
   const openModal = (user) => {
     setSelectedUser(user);
   };
-
+  // this triggers to close the modal upon clicking the cancel button
   const closeModal = () => {
     setSelectedUser(null);
   };
 
+  // this trigger upon clicking the generate button and pass the user to alert
   const generateReport = (user) => {
     if (user) {
       setSelectedUser(null);
-      
       setShowAlert(user);
       
     }
   };
+  // this triggers upon clicking the ok button to close the alert
   const closeAlert = () => {
     setShowAlert(false);
   };
   return (
+
     <div className='body m-0 p-0'>
+      {/* this contains the manual alert */}
       {showAlert && (
         <ManualAlert message={
           <p>Username:{showAlert.username}, Email:{showAlert.email}, Phone:{showAlert.phone}, ID:{showAlert.id}</p>
         } onClose={closeAlert} />
       )}
-      <div className= "main-container flex flex-col justify-start items-center h-max bg-gray-900">
+      {/* main container starts */}
+      <div className= "main-container flex flex-col justify-start items-center overflow-y-scroll h-screen bg-gray-900">
+        {/* link for returning to dashboard */}
       <Link to="/">
       <div className='fixed top-2 left-2 w-20 h-4'>
         <img className='w-16 h-16' src={back} alt="back" />
       </div>
       </Link>
+      {/* this contains the manual popup/modal which open upon selecting a user*/}
       {selectedUser && (
         <div className="modal card generate-container fixed top-4 text-center left-88 z-10 w-5/12 h-62 border border-solid border-slate-200 shadow shadow-slate-100 rounded p-3 bg-gray-200" >
           <div className="modal-content card-body">
@@ -78,6 +89,8 @@ const UserDetails = ({ userData, onUserClick }) => {
           </div>
         </div>
       )}
+      {/* this contains the search container to serach the table by username */}
+      {/* upon selecting a user I make the search container blur by changing the styling by selecting className*/}
         <div className= {selectedUser!==null?"search-container w-7/12 sm:w-10/12 mt-5 blur-sm":"search-container w-10/12 mt-5"}>
           
             <input type="text"
@@ -86,8 +99,10 @@ const UserDetails = ({ userData, onUserClick }) => {
             value={searchTerm}
             onChange={handleSearch} id="searchInput" />
         </div>
-        
+        {/* this contains the whole table */}
+        {/* upon selecting a user I make the search container blur by changing the styling by selecting className*/}
         <table  className= {selectedUser!==null?"user-table w-10/12 border-collapse mt-5 rounded-lg overflow-hidden blur-sm":"user-table w-10/12 border-collapse mt-5 rounded-lg overflow-hidden"}  id="userTable">
+          {/* table header */}
         <thead>
           <tr>
             <th className='border border-solid border-slate-400 p-2.5 sm:p-1 text-left bg-gray-800 text-white font-bold'>Username</th>
@@ -98,8 +113,9 @@ const UserDetails = ({ userData, onUserClick }) => {
           </tr>
         </thead>
         <tbody>
+          {/* table displaying user information  */}
           {filteredUsers.map((user) => (
-            <tr className='h-12 bg-gray-700 text-white transition-shadow cursor-pointer hover:bg-gray-600' key={user.id} onClick={() => selectUser(user)} >
+            <tr className='h-12 bg-slate-700 text-white transition-shadow cursor-pointer hover:bg-gray-600' key={user.id} onClick={() => selectUser(user)} >
               <td className='border border-solid border-slate-400 p-2.5 sm:p-1 text-left'>{user.username}</td>
               <td className='border border-solid border-slate-400 p-2.5 sm:p-1 text-left'>{user.email}</td>
               <td className='border border-solid border-slate-400 p-2.5 sm:p-1 text-left'>{user.phone}</td>
@@ -109,12 +125,6 @@ const UserDetails = ({ userData, onUserClick }) => {
           ))}
         </tbody>
       </table>
-      
-      {/* <Dashboard/> */}
-      
-      {/* Table displaying user information */}
-      
-      {/* Implement modal or popup for report generation */}
       
     </div>
     </div>

@@ -1,3 +1,4 @@
+// this is a placeholder database containing dummy username,id,email,phone and creation date
 const dummyData = [
     {
         id: 732, 

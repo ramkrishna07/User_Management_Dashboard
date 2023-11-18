@@ -14,7 +14,7 @@ const ManualAlert = ({ message, onClose }) => {
         <h4>Account Created</h4>
       </div>
       <div className="description text-base ">
-        <p>Report - {message}</p>
+        <p>Sit back relax,your account has been created succesfully</p>
       </div>
       <div class="footer">
         <button onClick={onClose} className="ok-button mt-2 py-1 px-8 bg-transparent text-black border-0 rounded cursor-pointer text-sm self-end hover:bg-green-300">OK</button>
@@ -74,12 +74,12 @@ const AccountCreation = () => {
         {/* field for entering the username */}
             <div className="input-container flex flex-col gap-4">
                 <label className='font-medium text-base text-white' for="">Username</label>
-                <input type="text" className="form-control bg-gray-600 text-white border border-solid border-slate-400 rounded p-2.5 mb-4" required value={username} onChange={(e) => setUsername(e.target.value)}/> 
+                <input type="text" className="form-control bg-gray-700 text-white border border-solid border-slate-400 rounded p-2.5 mb-4" required value={username} onChange={(e) => setUsername(e.target.value)}/> 
             </div>
             {/* field for entering the password */}
             <div className="input-container flex flex-col gap-4">
                 <label className='font-medium text-base text-white' for="">Password</label>
-                <input type="password" className="form-control text-white bg-gray-600 border border-solid border-slate-400 rounded p-2.5 mb-4 text-base" required value={password} onChange={(e) => setPassword(e.target.value)}/> 
+                <input type="password" className="form-control text-white bg-gray-700 border border-solid border-slate-400 rounded p-2.5 mb-4 text-base" required value={password} onChange={(e) => setPassword(e.target.value)}/> 
             </div>
             {/* field for checking  the remember me checkbox*/}
             <div className="form-check mb-4 gap-4"> 
